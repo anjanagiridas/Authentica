@@ -28,7 +28,7 @@ submit.addEventListener("click", () => {
     }
 });
 const generatePDF = async (nameval, enameval, orgnameval,posnameval,dateval,signv) => {
-    const existingPdfBytes = await fetch("Certificate.pdf").then((res) =>
+    const existingPdfBytes = await fetch("assets/Certificate.pdf").then((res) =>
         res.arrayBuffer()
     );
 
@@ -38,7 +38,7 @@ const generatePDF = async (nameval, enameval, orgnameval,posnameval,dateval,sign
 
 
     //get font
-    const fontBytes = await fetch("Sanchez-Regular.ttf").then((res) =>
+    const fontBytes = await fetch("assets/fonts/Sanchez-Regular.ttf").then((res) =>
         res.arrayBuffer()
     );
     // Embed our custom font in the document
@@ -49,38 +49,38 @@ const generatePDF = async (nameval, enameval, orgnameval,posnameval,dateval,sign
 
     // Draw a string of text diagonally across the first page
     firstPage.drawText(nameval, {
-        x: 330,
-        y: 270,
+        x: 338,
+        y: 293,
         size: 20,
         font: SanChezFont,
         color:rgb(0.2, 0.2, 0.2),
     });
     firstPage.drawText(posnameval, {
-        x: 116,
-        y: 240,
+        x: 140,
+        y: 270,
         size: 20,
         font: SanChezFont,
         color: rgb(0.2, 0.2, 0.2),
     });
   
     firstPage.drawText(orgnameval, {
-        x: 116,
-        y: 210,
+        x: 140,
+        y: 240,
         size: 20,
         font: SanChezFont,  
         color: rgb(0.2, 0.2, 0.2),
     });
      
     firstPage.drawText(enameval, {
-        x: 300,
-        y: 240,
+        x: 330,
+        y: 268,
         size: 20,
         font: SanChezFont,
         color: rgb(0.2, 0.2, 0.2),
     });
     firstPage.drawText(dateval, {
-        x: 430,
-        y: 210,
+        x: 440,
+        y: 240,
         size: 20,
         font: SanChezFont,
         color: rgb(0.2, 0.2, 0.2),
@@ -92,7 +92,6 @@ const generatePDF = async (nameval, enameval, orgnameval,posnameval,dateval,sign
         font: SanChezFont,
         color: rgb(0.2, 0.2, 0.2),
     });
-
     // Serialize the PDFDocument to bytes (a Uint8Array)
     const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
     saveAs(pdfDataUri, "newcertificate.pdf")
